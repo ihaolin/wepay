@@ -45,9 +45,32 @@
 		
 + API文档[这里](API.md)。
 
-+ **关于测试**: [测试用例中](wepay-core/src/test/java/me/hao0/wepay/WepayTest.java)是一些基本测试，[wepay-demo](wepay-demo)项目是一个可运行web项目，方便测试，可按如下步骤进行测试:
++ **关于测试**: 
 	
-	+  复制[wepay-demo](wepay-demo)中的``app-example.properties``为``app.properties``，并作相应配置:
+	+ [测试用例中](wepay-core/src/test/java/me/hao0/wepay/WepayTest.java)是一些基本测试，需作一些配置：
+
+		```java
+		// 在test/reources目录中配置dev.properties
+		// 包括appId(APP ID), appKey(支付密钥), mchId(商户号)
+		Properties props = new Properties();
+        InputStream in = Object.class.getResourceAsStream("/dev.properties");
+        props.load(in);
+        in.close();
+		 
+		 // 配置证书，退款需要证书，不配置可测试除退款的接口 
+        Path path = Paths.get("/path/to/your_cert.p12");
+        byte[] data = Files.readAllBytes(path);
+
+        wepay = WepayBuilder.newBuilder(
+                props.getProperty("appId"),
+                props.getProperty("appKey"),
+                props.getProperty("mchId"))
+                .certPasswd(props.getProperty("mchId"))
+                .certs(data)
+                .build();
+		```
+	
+	+ [wepay-demo](wepay-demo)项目是一个可运行web项目，方便测试，可按如下步骤进行测试，复制[wepay-demo](wepay-demo)中的``app-example.properties``为``app.properties``，并作相应配置:
 
 		```ruby
 		# 微信app id
