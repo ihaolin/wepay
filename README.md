@@ -60,7 +60,7 @@
 		payNotifyUrl=${your_domain}/notifies/paid
 		```
 	
-	+ **注意**：**``payNotifyUrl ``**应该配置为支付宝可以外网调用的地址，本地测试建议使用[ngrok](https://ngrok.com/)工具来作本地外网映射。
+	+ **注意**：**``payNotifyUrl ``**应该配置为微信服务器可以外网调用的地址，本地测试建议使用[ngrok](https://ngrok.com/)工具来作本地外网映射。
 
 	+ 到[wepay-demo](wepay-demo)根目录运行以下命令即可:
 
