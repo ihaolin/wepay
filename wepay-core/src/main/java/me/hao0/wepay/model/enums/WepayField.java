@@ -317,5 +317,88 @@ public final class WepayField {
      */
     public static final String COUPON_ID = "coupon_id";
 
+    /**
+     * 账单类型
+     */
+    public static final String BILL_TYPE = "bill_type";
 
+    /**
+     * 账单日期
+     */
+    public static final String BILL_DATE = "bill_date";
+
+    /**
+     * 子商户ID
+     */
+    public static final String SUB_MCH_ID = "sub_mch_id";
+
+    /**
+     * 企业红包金额
+     */
+    public static final String ENTER_RED_PKG_FEE = "enter_ed_pkg_fee";
+
+    /**
+     * 商户数据包
+     */
+    public static final String DATA_PKG = "data_pkg";
+
+    /**
+     * 商户手续费
+     */
+    public static final String COMMISSION_FEE = "commission_fee";
+
+    /**
+     * 费率
+     */
+    public static final String FEE_RATE = "fee_rate";
+
+    /**
+     * 企业红包退款金额
+     */
+    public static final String ENTER_RED_PKG_REFUND_FEE = "enter_red_pkg_refund_fee";
+
+    /**
+     * 退款申请时间
+     */
+    public static final String REFUND_APPLY_TIME = "refund_apply_time";
+
+    /**
+     * 退款成功时间
+     */
+    public static final String REFUND_SUCCESS_TIME = "refund_success_time";
+
+    /**
+     * 交易时间
+     */
+    public static final String TRADE_TIME = "trade_time";
+
+    /**
+     * 退款状态
+     */
+    public static final String REFUND_STATUS = "refund_status";
+
+    /**
+     * 总交易笔数
+     */
+    public static final String TRADE_TOTAL_COUNT = "trade_total_count";
+
+    /**
+     * 总交易额
+     */
+    public static final String TRADE_TOTAL_FEE = "trade_total_fee";
+
+    /**
+     * 总退款金额
+     */
+    public static final String REFUND_TOTAL_FEE = "refund_total_fee";
+
+    /**
+     * 总代金券或立减优惠退款金额
+     */
+    public static final String COUPON_REFUND_TOTAL_FEE = "coupon_refund_total_fee";
+
+    /**
+     * 手续费总金额
+     */
+    public static final String COMMISSION_TOTAL_FEE = "commission_total_fee";
 }

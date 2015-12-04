@@ -9,7 +9,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>wepay-core</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </dependency>
 	```
 	
@@ -41,7 +41,8 @@
 	+ 支付``pay()``;
 	+ 退款``refund()``;
 	+ 订单``order()``;
-	+ 通知``notify()``。
+	+ 通知``notify()``;
+	+ 账单``bill()``。
 		
 + API文档[这里](API.md)。
 
@@ -111,6 +112,10 @@
 	+ 1.0.0:
 		
 		+ 基本功能实现。
+	
+	+ 1.1.0:
+
+		+ 增加账单查询。 
 
 + 相关组件:
 

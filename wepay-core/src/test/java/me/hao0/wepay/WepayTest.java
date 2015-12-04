@@ -3,6 +3,10 @@ package me.hao0.wepay;
 import me.hao0.common.date.Dates;
 import me.hao0.wepay.core.Wepay;
 import me.hao0.wepay.core.WepayBuilder;
+import me.hao0.wepay.model.bill.Bill;
+import me.hao0.wepay.model.bill.BillDetail;
+import me.hao0.wepay.model.bill.CommonBill;
+import me.hao0.wepay.model.bill.RefundBill;
 import me.hao0.wepay.model.order.WePayOrder;
 import me.hao0.wepay.model.pay.AppPayResponse;
 import me.hao0.wepay.model.pay.JsPayRequest;
@@ -47,8 +51,8 @@ public class WepayTest {
                 props.getProperty("appId"),
                 props.getProperty("appKey"),
                 props.getProperty("mchId"))
-                .certPasswd(props.getProperty("mchId"))
-                .certs(data)
+                //.certPasswd(props.getProperty("mchId"))
+                //.certs(data)
                 .build();
 
 
@@ -162,5 +166,26 @@ public class WepayTest {
         assertNotNull(resp);
         System.out.println(resp);
 
+    }
+
+    @Test
+    public void testQueryBill(){
+        BillDetail<CommonBill> allBill = wepay.bill().queryAll(null, "20151203");
+        assertNotNull(allBill);
+        assertEquals(allBill.getBills().size(), allBill.getCount().getTradeTotalCount().intValue());
+        System.out.println(allBill.getBills().get(0));
+        System.out.println(allBill.getCount());
+
+        BillDetail<Bill> successBill = wepay.bill().querySuccess(null, "20151203");
+        assertNotNull(successBill);
+        assertEquals(successBill.getBills().size(), successBill.getCount().getTradeTotalCount().intValue());
+        System.out.println(successBill.getBills().get(0));
+        System.out.println(successBill.getCount());
+
+        BillDetail<RefundBill> refundBill = wepay.bill().queryRefund(null, "20151203");
+        assertNotNull(refundBill);
+        assertEquals(refundBill.getBills().size(), refundBill.getCount().getTradeTotalCount().intValue());
+        System.out.println(refundBill.getBills().get(0));
+        System.out.println(refundBill.getCount());
     }
 }

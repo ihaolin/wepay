@@ -6,6 +6,7 @@
 	+ 退款: <a href="#refund-api">refund()</a>
 	+ 订单: <a href="#order-api">order()</a>
 	+ 通知: <a href="#notify-api">notify()</a>
+	+ 账单: <a href="#bill-api">bill()</a>
 	
 + **<a id="pay-api">支付pay()</a>**:
 
@@ -122,3 +123,30 @@
     String notOk(String errMsg);
 	```
         
++ **<a id="bill-api">通知bill()</a>**:
+
+	```java
+	/**
+     * 查询所有账单
+     * @param deviceInfo 微信支付分配的终端设备号，填写此字段，只下载该设备号的对账单
+     * @param date 账单的日期
+     * @return 账单明细
+     */
+    BillDetail<CommonBill> queryAll(String deviceInfo, String date);
+	
+	/**
+     * 查询交易成功的账单
+     * @param deviceInfo 微信支付分配的终端设备号，填写此字段，只下载该设备号的对账单
+     * @param date 账单的日期
+     * @return 账单明细
+     */
+    BillDetail<Bill> querySuccess(String deviceInfo, String date);
+    
+    /**
+     * 查询退款账单
+     * @param deviceInfo 微信支付分配的终端设备号，填写此字段，只下载该设备号的对账单
+     * @param date 账单的日期
+     * @return 账单明细
+     */
+    BillDetail<RefundBill> queryRefund(String deviceInfo, String date);
+	```
