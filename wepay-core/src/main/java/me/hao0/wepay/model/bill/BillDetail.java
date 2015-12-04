@@ -9,7 +9,7 @@ import java.util.List;
  * Author: haolin
  * Email: haolin.h0@gmail.com
  * Date: 4/12/15
- * @see 1.1.0
+ * @since 1.1.0
  */
 public class BillDetail<T extends Bill> implements Serializable {
 
