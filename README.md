@@ -9,7 +9,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>wepay-core</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
     </dependency>
 	```
 	
@@ -115,7 +115,11 @@
 	
 	+ 1.1.0:
 
-		+ 增加账单查询。 
+		+ 增加账单查询。
+
+	+ 1.1.1:
+
+		+ 修复prepayId。
 
 + 相关组件:
 

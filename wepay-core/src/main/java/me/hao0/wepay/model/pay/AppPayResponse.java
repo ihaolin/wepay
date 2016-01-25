@@ -25,7 +25,7 @@ public class AppPayResponse implements Serializable {
     /**
      * 预支付ID
      */
-    private String perpayId;
+    private String prepayId;
 
     /**
      * 时间戳(s)
@@ -50,7 +50,7 @@ public class AppPayResponse implements Serializable {
     public AppPayResponse(String appId, String partnerId, String prepayId, String timeStamp, String nonceStr, String paySign) {
         this.appId = appId;
         this.partnerId = partnerId;
-        this.perpayId = prepayId;
+        this.prepayId = prepayId;
         this.timeStamp = timeStamp;
         this.nonceStr = nonceStr;
         this.paySign = paySign;
@@ -80,8 +80,8 @@ public class AppPayResponse implements Serializable {
         return partnerId;
     }
 
-    public String getPerpayId() {
-        return perpayId;
+    public String getPrepayId() {
+        return prepayId;
     }
 
     @Override
@@ -89,6 +89,7 @@ public class AppPayResponse implements Serializable {
         return "AppPayResponse{" +
                 "appId='" + appId + '\'' +
                 ", partnerId='" + partnerId + '\'' +
+                ", prepayId='" + prepayId + '\'' +
                 ", timeStamp='" + timeStamp + '\'' +
                 ", nonceStr='" + nonceStr + '\'' +
                 ", pkg='" + pkg + '\'' +
