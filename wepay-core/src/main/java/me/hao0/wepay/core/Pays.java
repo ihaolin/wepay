@@ -137,33 +137,35 @@ public final class Pays extends Component {
                 data.get(WepayField.PREPAY_ID);
 
         String signing =
-                WepayField.APP_ID + "=" + appId +
-                "&"+ WepayField.NONCE_STR +"=" + nonceStr +
+                WepayField.APPID + "=" + appId +
+                "&"+ WepayField.NONCESTR2 +"=" + nonceStr +
                 "&" + WepayField.PKG + "=" + pkg +
                 "&" + WepayField.SIGN_TYPE + "=MD5" +
                 "&" + WepayField.TIME_STAMP + "=" + timeStamp +
                 "&" + WepayField.KEY + "=" + wepay.getAppKey();
-        String signed = MD5.generate(signing, false);
+
+        String signed = MD5.generate(signing, false).toUpperCase();
 
         return new JsPayResponse(appId, timeStamp, nonceStr, pkg, "MD5", signed);
     }
 
     private AppPayResponse buildAppPayResp(Map<String, Object> data) {
         String appId = wepay.getAppId();
-        String partnerId= wepay.getAppId();
+        String partnerId= wepay.getMchId();
         String nonceStr = RandomStrs.generate(16);
         String timeStamp = String.valueOf(Dates.now().getTime() / 1000);
         String prepayId = String.valueOf(data.get(WepayField.PREPAY_ID));
 
         String signing =
                 WepayField.APP_ID + "=" + appId +
-                "&"+ WepayField.NONCE_STR +"=" + nonceStr +
+                "&"+ WepayField.NONCESTR +"=" + nonceStr +
                 "&" + WepayField.PKG + "=Sign=WXPay" +
-                "&" + WepayField.PARTNER_ID + "=" + partnerId +
-                "&" + WepayField.SIGN_TYPE + "=MD5" +
-                "&" + WepayField.TIME_STAMP + "=" + timeStamp +
+                "&" + WepayField.PARTNERID + "=" + partnerId +
+                "&" + WepayField.PREPAYID + "=" + prepayId +
+                "&" + WepayField.TIMESTAMP + "=" + timeStamp +
                 "&" + WepayField.KEY + "=" + wepay.getAppKey();
-        String signed = MD5.generate(signing, false);
+
+        String signed = MD5.generate(signing, false).toUpperCase();
 
         return new AppPayResponse(appId, partnerId, prepayId, timeStamp, nonceStr, signed);
     }
@@ -196,30 +198,30 @@ public final class Pays extends Component {
      * @return 支付MAP参数
      */
     private Map<String, String> buildPayParams(PayRequest request, TradeType tradeType) {
-        Map<String, String> jsPayParams = new TreeMap<>();
+        Map<String, String> payParams = new TreeMap<>();
 
         // 配置参数
-        buildConfigParams(jsPayParams);
+        buildConfigParams(payParams);
 
         // 业务必需参数
-        put(jsPayParams, WepayField.BODY, request.getBody());
-        put(jsPayParams, WepayField.OUT_TRADE_NO, request.getOutTradeNo());
-        put(jsPayParams, WepayField.TOTAL_FEE, request.getTotalFee() + "");
-        put(jsPayParams, WepayField.SPBILL_CREATE_IP, request.getClientId());
-        put(jsPayParams, WepayField.NOTIFY_URL, request.getNotifyUrl());
-        put(jsPayParams, WepayField.FEE_TYPE, request.getFeeType().type());
-        put(jsPayParams, WepayField.NONCE_STR, RandomStrs.generate(16));
-        put(jsPayParams, WepayField.TIME_START, request.getTimeStart());
-        put(jsPayParams, WepayField.TRADE_TYPE, tradeType.type());
+        put(payParams, WepayField.BODY, request.getBody());
+        put(payParams, WepayField.OUT_TRADE_NO, request.getOutTradeNo());
+        put(payParams, WepayField.TOTAL_FEE, request.getTotalFee() + "");
+        put(payParams, WepayField.SPBILL_CREATE_IP, request.getClientId());
+        put(payParams, WepayField.NOTIFY_URL, request.getNotifyUrl());
+        put(payParams, WepayField.FEE_TYPE, request.getFeeType().type());
+        put(payParams, WepayField.NONCE_STR, RandomStrs.generate(16));
+        put(payParams, WepayField.TIME_START, request.getTimeStart());
+        put(payParams, WepayField.TRADE_TYPE, tradeType.type());
 
         // 业务可选参数
-        putIfNotEmpty(jsPayParams, WepayField.DEVICE_INFO, request.getDeviceInfo());
-        putIfNotEmpty(jsPayParams, WepayField.ATTACH, request.getAttach());
-        putIfNotEmpty(jsPayParams, WepayField.DETAIL, request.getDetail());
-        putIfNotEmpty(jsPayParams, WepayField.GOODS_TAG, request.getGoodsTag());
-        putIfNotEmpty(jsPayParams, WepayField.TIME_EXPIRE, request.getTimeExpire());
-        putIfNotEmpty(jsPayParams, WepayField.LIMIT_PAY, request.getLimitPay());
+        putIfNotEmpty(payParams, WepayField.DEVICE_INFO, request.getDeviceInfo());
+        putIfNotEmpty(payParams, WepayField.ATTACH, request.getAttach());
+        putIfNotEmpty(payParams, WepayField.DETAIL, request.getDetail());
+        putIfNotEmpty(payParams, WepayField.GOODS_TAG, request.getGoodsTag());
+        putIfNotEmpty(payParams, WepayField.TIME_EXPIRE, request.getTimeExpire());
+        putIfNotEmpty(payParams, WepayField.LIMIT_PAY, request.getLimitPay());
 
-        return jsPayParams;
+        return payParams;
     }
 }

@@ -9,7 +9,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>wepay-core</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2</version>
     </dependency>
 	```
 	
@@ -120,6 +120,10 @@
 	+ 1.1.1:
 
 		+ 修复prepayId。
+
+	+ 1.1.2:
+
+		+ 修复JS/APP支付签名问题。
 
 + 相关组件:
 

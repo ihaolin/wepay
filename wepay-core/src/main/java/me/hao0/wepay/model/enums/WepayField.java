@@ -47,6 +47,11 @@ public final class WepayField {
     public static final String APP_ID = "appid";
 
     /**
+     * 公众帐号ID
+     */
+    public static final String APPID = "appId";
+
+    /**
      * 微信支付分配的商户号
      */
     public static final String MCH_ID = "mch_id";
@@ -61,6 +66,16 @@ public final class WepayField {
      * 随机字符串，不长于32位
      */
     public static final String NONCE_STR = "nonce_str";
+
+    /**
+     * 随机字符串，不长于32位
+     */
+    public static final String NONCESTR = "noncestr";
+
+    /**
+     * 随机字符串，不长于32位
+     */
+    public static final String NONCESTR2 = "nonceStr";
 
     /**
      * 签名
@@ -172,6 +187,11 @@ public final class WepayField {
     public static final String PREPAY_ID = "prepay_id";
 
     /**
+     * 预支付ID
+     */
+    public static final String PREPAYID = "prepayid";
+
+    /**
      * 二维码链接
      */
     public static final String CODE_URL = "code_url";
@@ -235,6 +255,11 @@ public final class WepayField {
      * 时间戳
      */
     public static final String TIME_STAMP = "timeStamp";
+
+    /**
+     * 时间戳
+     */
+    public static final String TIMESTAMP = "timestamp";
 
     /**
      * 签名KEY
@@ -306,6 +331,11 @@ public final class WepayField {
      * 商户号
      */
     public static final String PARTNER_ID = "partner_id";
+
+    /**
+     * 商户号
+     */
+    public static final String PARTNERID = "partnerid";
 
     /**
      * 代金券或立减优惠批次ID
