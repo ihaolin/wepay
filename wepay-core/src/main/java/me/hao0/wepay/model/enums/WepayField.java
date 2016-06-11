@@ -431,4 +431,19 @@ public final class WepayField {
      * 手续费总金额
      */
     public static final String COMMISSION_TOTAL_FEE = "commission_total_fee";
+
+    /**
+     * 退款金额
+     */
+    public static final String SETTLEMENT_REFUND_FEE = "settlement_refund_fee";
+
+    /**
+     * 退款入账账户
+     * 1）退回银行卡：
+     * {银行名称}{卡类型}{卡尾号}
+     * 2）退回支付用户零钱:
+     * 支付用户零钱
+     */
+    public static final String REFUND_RECV_ACCOUNT = "refund_recv_accout";
+
 }

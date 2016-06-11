@@ -2,7 +2,7 @@ package me.hao0.wepay.model.refund;
 
 import me.hao0.wepay.model.common.Coupon;
 import me.hao0.wepay.model.enums.RefundChannel;
-
+import me.hao0.wepay.model.enums.RefundStatus;
 import java.io.Serializable;
 import java.util.List;
 
@@ -33,9 +33,29 @@ public class RefundItem implements Serializable {
     private RefundChannel channel;
 
     /**
-     * 退款金额
+     * 申请退款金额, 可以做部分退款
      */
     private Integer refundFee;
+
+    /**
+     * 退款金额, = 申请退款金额-非充值代金券退款金额，退款金额<=申请退款金额
+     */
+    private Integer settlementRefundFee;
+
+    /**
+     * 退款状态
+     * @see RefundStatus
+     */
+    private RefundStatus refundStatus;
+
+    /**
+     * 取当前退款单的退款入账方
+     * 1）退回银行卡：
+     * {银行名称}{卡类型}{卡尾号}
+     * 2）退回支付用户零钱:
+     * 支付用户零钱
+     */
+    private String refundRecvAccout;
 
     /**
      * 代金券或立减优惠退款金额
@@ -79,6 +99,30 @@ public class RefundItem implements Serializable {
         this.refundFee = refundFee;
     }
 
+    public Integer getSettlementRefundFee() {
+        return settlementRefundFee;
+    }
+
+    public void setSettlementRefundFee(Integer settlementRefundFee) {
+        this.settlementRefundFee = settlementRefundFee;
+    }
+
+    public RefundStatus getRefundStatus() {
+        return refundStatus;
+    }
+
+    public void setRefundStatus(RefundStatus refundStatus) {
+        this.refundStatus = refundStatus;
+    }
+
+    public String getRefundRecvAccout() {
+        return refundRecvAccout;
+    }
+
+    public void setRefundRecvAccout(String refundRecvAccout) {
+        this.refundRecvAccout = refundRecvAccout;
+    }
+
     public Integer getCouponRefundFee() {
         return couponRefundFee;
     }
@@ -102,6 +146,9 @@ public class RefundItem implements Serializable {
                 ", refundId='" + refundId + '\'' +
                 ", channel=" + channel +
                 ", refundFee=" + refundFee +
+                ", settlementRefundFee=" + settlementRefundFee +
+                ", refundStatus=" + refundStatus +
+                ", refundRecvAccout='" + refundRecvAccout + '\'' +
                 ", couponRefundFee=" + couponRefundFee +
                 ", coupons=" + coupons +
                 '}';

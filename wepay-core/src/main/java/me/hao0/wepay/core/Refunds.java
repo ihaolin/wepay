@@ -3,6 +3,7 @@ package me.hao0.wepay.core;
 import me.hao0.common.util.Strings;
 import me.hao0.wepay.model.enums.FeeType;
 import me.hao0.wepay.model.enums.RefundChannel;
+import me.hao0.wepay.model.enums.RefundStatus;
 import me.hao0.wepay.model.enums.WepayField;
 import me.hao0.wepay.model.refund.RefundApplyRequest;
 import me.hao0.wepay.model.refund.RefundApplyResponse;
@@ -127,6 +128,15 @@ public final class Refunds extends Component {
         refundItem.setRefundId((String)refundData.get(WepayField.REFUND_ID + "_" + refundItemIndex));
         refundItem.setChannel(RefundChannel.from((String) refundData.get(WepayField.REFUND_CHANNEL + "_" + refundItemIndex)));
         refundItem.setRefundFee(Integer.parseInt((String)refundData.get(WepayField.REFUND_FEE + "_" + refundItemIndex)));
+        refundItem.setRefundStatus(RefundStatus.from((String)refundData.get(WepayField.REFUND_STATUS + "_" + refundItemIndex)));
+
+        String settlementRefundFee = (String)refundData.get(WepayField.SETTLEMENT_REFUND_FEE + "_" + refundItemIndex);
+        if (Strings.isNullOrEmpty(settlementRefundFee)){
+            refundItem.setSettlementRefundFee(Integer.parseInt(settlementRefundFee));
+        }
+
+        refundItem.setRefundRecvAccout((String)refundData.get(WepayField.REFUND_RECV_ACCOUNT + "_" + refundItemIndex));
+
         Object couponRefundFee = refundData.get(WepayField.COUPON_REFUND_FEE + "_" + refundItemIndex);
         if (couponRefundFee != null){
             refundItem.setCouponRefundFee(Integer.parseInt((String)couponRefundFee));
