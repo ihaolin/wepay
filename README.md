@@ -9,7 +9,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>wepay-core</artifactId>
-        <version>1.2.2</version>
+        <version>1.2.3</version>
     </dependency>
 	```
 	
@@ -128,6 +128,10 @@
 	+ 1.2.2:
 		
 		+ 增加退款查询字段: 退款状态, 退款金额, 退款入账方。
+	
+	+ 1.2.3:
+			
+        + fix isNullOrEmpty。
 
 + 相关组件:
 
