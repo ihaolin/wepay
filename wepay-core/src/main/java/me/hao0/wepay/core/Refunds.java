@@ -131,7 +131,7 @@ public final class Refunds extends Component {
         refundItem.setRefundStatus(RefundStatus.from((String)refundData.get(WepayField.REFUND_STATUS + "_" + refundItemIndex)));
 
         String settlementRefundFee = (String)refundData.get(WepayField.SETTLEMENT_REFUND_FEE + "_" + refundItemIndex);
-        if (Strings.isNullOrEmpty(settlementRefundFee)){
+        if (!Strings.isNullOrEmpty(settlementRefundFee)){
             refundItem.setSettlementRefundFee(Integer.parseInt(settlementRefundFee));
         }
 
