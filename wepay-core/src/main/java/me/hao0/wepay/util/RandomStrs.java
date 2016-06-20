@@ -15,6 +15,10 @@ public final class RandomStrs {
 
     private static final Random random = new Random();
 
+    private RandomStrs() throws InstantiationException {
+        throw new InstantiationException("This utility class is not created for instantiation");
+    }
+
     /**
      * 生成随机字符串
      * @param length 长度

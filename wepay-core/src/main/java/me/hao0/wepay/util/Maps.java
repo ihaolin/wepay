@@ -18,6 +18,10 @@ import java.util.Map;
  */
 public final class Maps {
 
+    private Maps() throws InstantiationException {
+        throw new InstantiationException("This utility class is not created for instantiation");
+    }
+
     /**
      * 转换微信XML为Map(仅支持2级)
      * @param xml xml内容
