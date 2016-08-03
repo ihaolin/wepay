@@ -59,7 +59,7 @@ public abstract class Component {
      * @return 若成功，返回对应Reader，反之抛WepayException
      */
     private XmlReaders readResp(final String xml) {
-        XmlReaders readers = XmlReaders.create(xml);
+        XmlReaders readers = XmlReaders.create(xml, wepay.respEncode);
         String returnCode = readers.getNodeStr(WepayField.RETURN_CODE);
         if (WepayField.SUCCESS.equals(returnCode)){
             String resultCode = readers.getNodeStr(WepayField.RESULT_CODE);

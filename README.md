@@ -9,7 +9,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>wepay-core</artifactId>
-        <version>1.2.3</version>
+        <version>1.2.4</version>
     </dependency>
 	```
 	
@@ -19,7 +19,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>common</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.2</version>
     </dependency>
 	
 	```
@@ -132,6 +132,10 @@
 	+ 1.2.3:
 			
         + fix isNullOrEmpty。
+    
+    + 1.2.4:
+    			
+        + 升级common至1.1.2, 可配置解析微信XML的编码类型, 默认为UTF-8, 防止与本地默认编码不一致。
 
 + 相关组件:
 

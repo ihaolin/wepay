@@ -44,6 +44,11 @@ public final class Wepay {
      */
     String certPasswd;
 
+    /**
+     * 解析微信XML时, 使用的编码类型
+     */
+    String respEncode = "UTF-8";
+
     private SSLSocketFactory sslSocketFactory;
 
     /**
@@ -95,6 +100,10 @@ public final class Wepay {
 
     public String getCertPasswd() {
         return certPasswd;
+    }
+
+    public String getRespEncode() {
+        return respEncode;
     }
 
     public SSLSocketFactory getSslSocketFactory() {

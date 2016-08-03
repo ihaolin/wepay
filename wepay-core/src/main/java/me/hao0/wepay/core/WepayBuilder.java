@@ -39,6 +39,16 @@ public final class WepayBuilder {
         return this;
     }
 
+    /**
+     * 设置解析微信XML时, 使用的编码类型
+     * @param encode 编码类型
+     * @return this
+     */
+    public WepayBuilder respEncode(String encode){
+        wepay.respEncode = encode;
+        return this;
+    }
+
     public Wepay build(){
         return wepay.init();
     }
