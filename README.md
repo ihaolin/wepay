@@ -1,4 +1,4 @@
-# Wepay
+# Wepay[![Build Status](https://travis-ci.org/ihaolin/wepay.svg?branch=master)](https://travis-ci.org/ihaolin/wepay)
 
 轻量的微信支付组件(A Lightweight Wechat Pay Component)
 ---
