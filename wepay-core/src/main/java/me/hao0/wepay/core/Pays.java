@@ -10,6 +10,7 @@ import me.hao0.wepay.model.pay.JsPayRequest;
 import me.hao0.wepay.model.pay.JsPayResponse;
 import me.hao0.wepay.model.pay.PayRequest;
 import me.hao0.wepay.model.pay.QrPayRequest;
+import me.hao0.wepay.model.pay.QrPayResponse;
 import me.hao0.wepay.util.RandomStrs;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -56,7 +57,7 @@ public final class Pays extends Component {
      * @param request 支付请求对象
      * @return 使用联图生成的二维码链接，或抛WepayException
      */
-    public String qrPay(QrPayRequest request){
+    public QrPayResponse qrPay(QrPayRequest request){
         return qrPay(request, Boolean.TRUE);
     }
 
@@ -66,18 +67,28 @@ public final class Pays extends Component {
      * @param convert 是否转换为二维码图片链接(使用联图)
      * @return 可访问的二维码链接，或抛WepayException
      */
-    public String qrPay(QrPayRequest request, Boolean convert){
+    public QrPayResponse qrPay(QrPayRequest request, Boolean convert){
+
         checkPayParams(request);
+
         Map<String, Object> respData = doQrPay(request, TradeType.NATIVE);
+
         String codeUrl = String.valueOf(respData.get(WepayField.CODE_URL));
         if (convert){
             try {
-                return LIANTU_URL + URLEncoder.encode(codeUrl, "UTF-8");
+                codeUrl = LIANTU_URL + URLEncoder.encode(codeUrl, "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 throw new WepayException(e);
             }
         }
-        return codeUrl;
+
+        String prepayId = String.valueOf(respData.get(WepayField.PREPAY_ID));
+
+        QrPayResponse resp = new QrPayResponse();
+        resp.setCodeUrl(codeUrl);
+        resp.setPrepayId(prepayId);
+
+        return resp;
     }
 
     /**

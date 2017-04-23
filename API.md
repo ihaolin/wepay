@@ -24,7 +24,7 @@
      * @param convert 是否转换为二维码图片链接(使用联图)
      * @return 可访问的二维码链接，或抛WepayException
      */
-    String qrPay(QrPayRequest request, Boolean convert);
+    QrPayResponse qrPay(QrPayRequest request, Boolean convert);
     
     /**
      * app支付

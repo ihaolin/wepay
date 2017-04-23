@@ -9,7 +9,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>wepay-core</artifactId>
-        <version>1.2.4</version>
+        <version>1.2.5</version>
     </dependency>
 	```
 	
@@ -136,6 +136,10 @@
     + 1.2.4:
     			
         + 升级common至1.1.2, 可配置解析微信XML的编码类型, 默认为UTF-8, 防止与本地默认编码不一致。
+    
+    + 1.2.5:
+    
+        + 二维码支付结果更新为[QrPayResponse](wepay-core/src/main/java/me/hao0/wepay/model/pay/QrPayResponse.java)，并增加**prepay_id**字段。
 
 + 相关组件:
 

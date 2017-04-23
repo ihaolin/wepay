@@ -13,6 +13,7 @@ import me.hao0.wepay.model.pay.JsPayRequest;
 import me.hao0.wepay.model.pay.JsPayResponse;
 import me.hao0.wepay.model.pay.PayRequest;
 import me.hao0.wepay.model.pay.QrPayRequest;
+import me.hao0.wepay.model.pay.QrPayResponse;
 import me.hao0.wepay.model.refund.RefundApplyRequest;
 import me.hao0.wepay.model.refund.RefundApplyResponse;
 import me.hao0.wepay.model.refund.RefundQueryResponse;
@@ -82,7 +83,7 @@ public class WepayTest {
         request.setNotifyUrl("http://www.xxx.com/notify");
         request.setOutTradeNo("TEST1122334455");
         request.setTimeStart(Dates.now("yyyyMMddHHmmss"));
-        String resp = wepay.pay().qrPay(request);
+        QrPayResponse resp = wepay.pay().qrPay(request);
         assertNotNull(resp);
         System.out.println(resp);
     }
@@ -96,7 +97,7 @@ public class WepayTest {
         request.setNotifyUrl("http://www.xxx.com/notify");
         request.setOutTradeNo("TEST3344520");
         request.setTimeStart(Dates.now("yyyyMMddHHmmss"));
-        String resp = wepay.pay().qrPay(request, Boolean.TRUE);
+        QrPayResponse resp = wepay.pay().qrPay(request, Boolean.TRUE);
         assertNotNull(resp);
         System.out.println(resp);
     }

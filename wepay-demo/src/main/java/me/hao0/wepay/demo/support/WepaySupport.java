@@ -62,7 +62,7 @@ public class WepaySupport {
         request.setNotifyUrl(payNotifyUrl);
         request.setOutTradeNo(orderNumber);
         request.setTimeStart(Dates.now("yyyyMMddHHmmss"));
-        return wepay.pay().qrPay(request);
+        return wepay.pay().qrPay(request).getCodeUrl();
     }
 
     /**
