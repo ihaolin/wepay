@@ -6,6 +6,7 @@ import me.hao0.common.json.Jsons;
 import me.hao0.common.security.MD5;
 import me.hao0.common.util.Strings;
 import me.hao0.common.xml.XmlReaders;
+import me.hao0.wepay.exception.SignException;
 import me.hao0.wepay.exception.WepayException;
 import me.hao0.wepay.model.enums.WepayField;
 import me.hao0.wepay.util.Maps;
@@ -29,7 +30,9 @@ public abstract class Component {
         String requestBody = Maps.toXml(params);
         String resp = Http.post(url).ssl().body(requestBody).request();
         Map<String, Object> respMap = toMap(resp.replaceAll("(\\r|\\n)", ""));
-        doVerifySign(respMap);
+        if (!doVerifySign(respMap)){
+            throw new SignException("微信响应内容签名非法: " + respMap);
+        }
         return respMap;
     }
 
@@ -38,7 +41,9 @@ public abstract class Component {
         String resp = Https.post(url).body(requestBody)
                 .ssLSocketFactory(wepay.getSslSocketFactory()).request();
         Map<String, Object> respMap = toMap(resp.replaceAll("(\\r|\\n)", ""));
-        doVerifySign(respMap);
+        if (!doVerifySign(respMap)){
+            throw new SignException("微信响应内容签名非法: " + respMap);
+        }
         return Jsons.DEFAULT.fromJson(Jsons.DEFAULT.toJson(respMap), respClazz);
     }
 
@@ -112,15 +117,6 @@ public abstract class Component {
 
         // md5
         return MD5.generate(signing.toString(), false).toUpperCase();
-    }
-
-    /**
-     * 校验
-     * @param xml 微信xml内容
-     * @return 校验成功返回true，反之false
-     */
-    protected Boolean doVerifySign(final String xml) {
-        return doVerifySign(toMap(xml));
     }
 
     /**

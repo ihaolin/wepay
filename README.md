@@ -9,7 +9,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>wepay-core</artifactId>
-        <version>1.2.5</version>
+        <version>1.3.0</version>
     </dependency>
 	```
 	
@@ -140,6 +140,10 @@
     + 1.2.5:
     
         + 二维码支付结果更新为[QrPayResponse](wepay-core/src/main/java/me/hao0/wepay/model/pay/QrPayResponse.java)，并增加**prepay_id**字段。
+    
+    + 1.3.0:
+    
+        + 获取微信响应内容，签名校验失败时，抛出异常[SignException](wepay-core/src/main/java/me/hao0/wepay/exception/SignException.java)。
 
 + 相关组件:
 
