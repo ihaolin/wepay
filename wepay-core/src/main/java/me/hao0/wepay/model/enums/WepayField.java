@@ -147,7 +147,7 @@ public final class WepayField {
      * 商品标记，代金券或立减优惠功能的参数
      */
     @Optional
-    public static final String GOODS_TAG = "godds_tag";
+    public static final String GOODS_TAG = "goods_tag";
 
     /**
      * 接收微信支付异步通知回调地址
