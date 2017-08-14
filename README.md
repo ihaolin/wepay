@@ -9,7 +9,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>wepay-core</artifactId>
-        <version>1.3.0</version>
+        <version>1.3.1</version>
     </dependency>
 	```
 	
@@ -144,6 +144,10 @@
     + 1.3.0:
     
         + 获取微信响应内容，签名校验失败时，抛出异常[SignException](wepay-core/src/main/java/me/hao0/wepay/exception/SignException.java)。
+     
+    + 1.3.1:
+    
+        + 修复`goods_tag`字段名。
 
 + 相关组件:
 
