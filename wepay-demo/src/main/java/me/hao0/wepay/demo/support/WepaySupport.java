@@ -57,7 +57,7 @@ public class WepaySupport {
     public String qrPay(String orderNumber){
         QrPayRequest request = new QrPayRequest();
         request.setBody("测试订单");
-        request.setClientId("127.0.0.1");
+        request.setClientIp("127.0.0.1");
         request.setTotalFee(1);
         request.setNotifyUrl(payNotifyUrl);
         request.setOutTradeNo(orderNumber);

@@ -196,7 +196,7 @@ public final class Pays extends Component {
         checkNotNullAndEmpty(request.getOutTradeNo(), "outTradeNo");
         Integer totalFee = request.getTotalFee();
         checkArgument(totalFee != null && totalFee > 0, "totalFee must > 0");
-        checkNotNullAndEmpty(request.getClientId(), "clientId");
+        checkNotNullAndEmpty(request.getClientIp(), "clientId");
         checkNotNullAndEmpty(request.getNotifyUrl(), "notifyUrl");
         checkNotNull(request.getFeeType(), "feeType can't be null");
         checkNotNullAndEmpty(request.getTimeStart(), "timeStart");
@@ -218,7 +218,7 @@ public final class Pays extends Component {
         put(payParams, WepayField.BODY, request.getBody());
         put(payParams, WepayField.OUT_TRADE_NO, request.getOutTradeNo());
         put(payParams, WepayField.TOTAL_FEE, request.getTotalFee() + "");
-        put(payParams, WepayField.SPBILL_CREATE_IP, request.getClientId());
+        put(payParams, WepayField.SPBILL_CREATE_IP, request.getClientIp());
         put(payParams, WepayField.NOTIFY_URL, request.getNotifyUrl());
         put(payParams, WepayField.FEE_TYPE, request.getFeeType().type());
         put(payParams, WepayField.NONCE_STR, RandomStrs.generate(16));

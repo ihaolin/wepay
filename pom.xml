@@ -6,7 +6,7 @@
 
     <groupId>me.hao0</groupId>
     <artifactId>wepay</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
     <modules>
         <module>wepay-core</module>
         <module>wepay-demo</module>

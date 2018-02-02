@@ -63,7 +63,7 @@ public class WepayTest {
     public void testJsPay(){
         JsPayRequest request = new JsPayRequest();
         request.setBody("测试订单");
-        request.setClientId("127.0.0.1");
+        request.setClientIp("127.0.0.1");
         request.setTotalFee(1);
         request.setNotifyUrl("http://www.xxx.com/notify");
         request.setOpenId(openId);
@@ -78,7 +78,7 @@ public class WepayTest {
     public void testQrPay(){
         QrPayRequest request = new QrPayRequest();
         request.setBody("测试订单");
-        request.setClientId("127.0.0.1");
+        request.setClientIp("127.0.0.1");
         request.setTotalFee(1);
         request.setNotifyUrl("http://www.xxx.com/notify");
         request.setOutTradeNo("TEST1122334455");
@@ -92,7 +92,7 @@ public class WepayTest {
     public void testQrPayConvert(){
         QrPayRequest request = new QrPayRequest();
         request.setBody("测试订单");
-        request.setClientId("127.0.0.1");
+        request.setClientIp("127.0.0.1");
         request.setTotalFee(1);
         request.setNotifyUrl("http://www.xxx.com/notify");
         request.setOutTradeNo("TEST3344520");
@@ -106,7 +106,7 @@ public class WepayTest {
     public void testAppPay(){
         PayRequest request = new PayRequest();
         request.setBody("测试订单");
-        request.setClientId("127.0.0.1");
+        request.setClientIp("127.0.0.1");
         request.setTotalFee(1);
         request.setNotifyUrl("http://www.xxx.com/notify");
         request.setOutTradeNo("TEST12345678app");

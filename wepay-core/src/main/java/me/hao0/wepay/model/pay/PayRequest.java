@@ -35,7 +35,7 @@ public class PayRequest implements Serializable {
      * 客户端IP
      * {@link me.hao0.wepay.model.enums.WepayField#SPBILL_CREATE_IP}
      */
-    private String clientId;
+    private String clientIp;
 
     /**
      * 通知URL
@@ -121,12 +121,12 @@ public class PayRequest implements Serializable {
         this.totalFee = totalFee;
     }
 
-    public String getClientId() {
-        return clientId;
+    public String getClientIp() {
+        return clientIp;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setClientIp(String clientIp) {
+        this.clientIp = clientIp;
     }
 
     public String getNotifyUrl() {
@@ -207,7 +207,7 @@ public class PayRequest implements Serializable {
                 "body='" + body + '\'' +
                 ", outTradeNo='" + outTradeNo + '\'' +
                 ", totalFee=" + totalFee +
-                ", clientId='" + clientId + '\'' +
+                ", clientIp='" + clientIp + '\'' +
                 ", notifyUrl='" + notifyUrl + '\'' +
                 ", deviceInfo='" + deviceInfo + '\'' +
                 ", attach='" + attach + '\'' +

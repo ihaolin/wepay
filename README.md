@@ -9,7 +9,7 @@
 	<dependency>
         <groupId>me.hao0</groupId>
         <artifactId>wepay-core</artifactId>
-        <version>1.3.1</version>
+        <version>1.3.2</version>
     </dependency>
 	```
 	
@@ -148,6 +148,10 @@
     + 1.3.1:
     
         + 修复`goods_tag`字段名。
+        
+    + 1.3.2:
+        
+        + 修复`clientIp`字段为`clientIp`。
 
 + 相关组件:
 
