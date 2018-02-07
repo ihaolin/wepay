@@ -446,4 +446,8 @@ public final class WepayField {
      */
     public static final String REFUND_RECV_ACCOUNT = "refund_recv_accout";
 
+    private WepayField() throws InstantiationException {
+        throw new InstantiationException("This utility class is not created for instantiation");
+    }
+
 }
