@@ -226,17 +226,6 @@ public final class Pays extends Component {
         String pkg = WepayField.PREPAY_ID + "=" +
                 data.get(WepayField.PREPAY_ID);
 
-        String returnCode = (String) data.get(WepayField.RETURN_CODE);
-        String returnMsg = (String) data.get(WepayField.RETURN_MSG);
-        String resultCode = (String) data.get(WepayField.RESULT_CODE);
-
-        String errCode = null;
-        String errCodeDes = null;
-        if (resultCode.equals("FAIL")) {
-            errCode = (String) data.get(WepayField.ERR_CODE);
-            errCodeDes = (String) data.get(WepayField.ERR_CODE_DES);
-        }
-
         String signing =
                 WepayField.APPID + "=" + appId +
                         "&" + WepayField.NONCESTR2 + "=" + nonceStr +
@@ -248,8 +237,7 @@ public final class Pays extends Component {
 
         String signed = MD5.generate(signing, false).toUpperCase();
 
-        return new H5PayResponse(appId, timeStamp, nonceStr, pkg, "MD5", signed,
-                returnCode, resultCode, errCode, errCodeDes, returnMsg, prepayId, mwebUrl);
+        return new H5PayResponse(appId, timeStamp, nonceStr, pkg, "MD5", signed, prepayId, mwebUrl);
     }
 
     /**

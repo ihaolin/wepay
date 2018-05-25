@@ -54,30 +54,15 @@ public class H5PayResponse implements Serializable {
      */
     private String paySign;
 
-    private String returnCode;
-
-    private String returnMsg;
-
-    private String resultCode;
-
-    private String errCode;
-
-    private String errCodeDes;
 
     public H5PayResponse(String appId, String timeStamp, String nonceStr, String pkg, String signType,
-                         String paySign, String returnCode, String resultCode, String errCode,
-                         String errCodeDes, String returnMsg, String prepayId, String mwebUrl) {
+                         String paySign, String prepayId, String mwebUrl) {
         this.appId = appId;
         this.timeStamp = timeStamp;
         this.nonceStr = nonceStr;
         this.pkg = pkg;
         this.signType = signType;
         this.paySign = paySign;
-        this.returnCode = returnCode;
-        this.resultCode = resultCode;
-        this.errCode = errCode;
-        this.errCodeDes = errCodeDes;
-        this.returnMsg = returnMsg;
         this.prepayId = prepayId;
         this.mwebUrl = mwebUrl;
 
@@ -119,39 +104,17 @@ public class H5PayResponse implements Serializable {
         return paySign;
     }
 
-    public String getReturnCode() {
-        return returnCode;
-    }
-
-    public String getReturnMsg() {
-        return returnMsg;
-    }
-
-    public String getResultCode() {
-        return resultCode;
-    }
-
-    public String getErrCode() {
-        return errCode;
-    }
-
-    public String getErrCodeDes() {
-        return errCodeDes;
-    }
-
     @Override
     public String toString() {
-        return "JsPayResponse{" +
+        return "H5PayResponse{" +
                 "appId='" + appId + '\'' +
                 ", timeStamp='" + timeStamp + '\'' +
                 ", nonceStr='" + nonceStr + '\'' +
                 ", pkg='" + pkg + '\'' +
                 ", signType='" + signType + '\'' +
+                ", mwebUrl='" + mwebUrl + '\'' +
+                ", prepayId='" + prepayId + '\'' +
                 ", paySign='" + paySign + '\'' +
-                ", returnCode='" + returnCode + '\'' +
-                ", resultCode='" + resultCode + '\'' +
-                ", errCode='" + errCode + '\'' +
-                ", errCodeDes='" + errCodeDes + '\'' +
                 '}';
     }
 }
