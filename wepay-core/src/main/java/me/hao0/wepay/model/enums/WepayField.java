@@ -446,4 +446,16 @@ public final class WepayField {
      */
     public static final String REFUND_RECV_ACCOUNT = "refund_recv_accout";
 
+
+    /**
+     * 该字段用于上报支付的场景信息,针对H5支付有以下三种场景,请根据对应场景上报,H5支付不建议在APP端使用
+     */
+    public static final String SCENE_INFO = "scene_info";
+
+    public static final String WAP_URL = "wap_url";
+
+    public static final String WAP_NAME = "wap_name";
+
+    public static final String MWEB_URL = "mweb_url";
+
 }

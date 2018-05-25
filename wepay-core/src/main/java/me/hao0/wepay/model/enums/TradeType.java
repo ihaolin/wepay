@@ -25,6 +25,11 @@ public enum TradeType {
     APP("APP"),
 
     /**
+     * H5支付
+     */
+    MWEB("MWEB"),
+
+    /**
      * 刷卡支付
      */
     MICROPAY("MICROPAY");

@@ -1,21 +1,17 @@
 package me.hao0.wepay.core;
 
 import me.hao0.common.date.Dates;
+import me.hao0.common.json.Jsons;
 import me.hao0.common.security.MD5;
 import me.hao0.wepay.exception.WepayException;
 import me.hao0.wepay.model.enums.TradeType;
 import me.hao0.wepay.model.enums.WepayField;
-import me.hao0.wepay.model.pay.AppPayResponse;
-import me.hao0.wepay.model.pay.JsPayRequest;
-import me.hao0.wepay.model.pay.JsPayResponse;
-import me.hao0.wepay.model.pay.PayRequest;
-import me.hao0.wepay.model.pay.QrPayRequest;
-import me.hao0.wepay.model.pay.QrPayResponse;
+import me.hao0.wepay.model.pay.*;
 import me.hao0.wepay.util.RandomStrs;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
+
 import static me.hao0.common.util.Preconditions.*;
 
 /**
@@ -41,6 +37,18 @@ public final class Pays extends Component {
         super(wepay);
     }
 
+    /**
+     * H5支付
+     *
+     * @param request 支付请求对象
+     * @return JsPayResponse对象，或抛WepayException
+     */
+    public H5PayResponse h5Pay(H5PayRequest request) {
+        checkH5PayParams(request);
+        Map<String, Object> respData = doH5Pay(request, TradeType.MWEB);
+        return buildH5PayResp(respData);
+    }
+    
     /**
      * JS支付(公众号支付)
      * @param request 支付请求对象
@@ -114,6 +122,33 @@ public final class Pays extends Component {
     }
 
     /**
+     * H5支付
+     *
+     * @param request 支付信息
+     * @return 支付结果
+     */
+    private Map<String, Object> doH5Pay(H5PayRequest request, TradeType tradeType) {
+        Map<String, String> payParams = buildPayParams(request, tradeType);
+        /**
+         * scene_info
+         */
+        LinkedHashMap value = new LinkedHashMap();
+        // 暂时固定这个值，因为微信官方不推荐在app使用h5支付
+        value.put("type", "wap");
+        //WAP网站URL地址
+        value.put(WepayField.WAP_URL, request.getWapUrl());
+        //WAP 网站名
+        value.put(WepayField.WAP_NAME, request.getWapName());
+        Map<String, Object> sceneInfo = new HashMap<>();
+        // h5_info固定值
+        sceneInfo.put("h5_info", value);
+        
+        payParams.put(WepayField.SCENE_INFO, Jsons.DEFAULT.toJson(sceneInfo));
+
+        return doPay(payParams);
+    }
+    
+    /**
      * APP支付
      * @param request 支付信
      * @return 支付结
@@ -181,6 +216,42 @@ public final class Pays extends Component {
         return new AppPayResponse(appId, partnerId, prepayId, timeStamp, nonceStr, signed);
     }
 
+    private H5PayResponse buildH5PayResp(Map<String, Object> data) {
+
+        String appId = wepay.getAppId();
+        String prepayId = (String) data.get(WepayField.PREPAY_ID);
+        String mwebUrl = (String) data.get(WepayField.MWEB_URL);
+        String nonceStr = RandomStrs.generate(16);
+        String timeStamp = String.valueOf(new Date().getTime() / 1000);
+        String pkg = WepayField.PREPAY_ID + "=" +
+                data.get(WepayField.PREPAY_ID);
+
+        String returnCode = (String) data.get(WepayField.RETURN_CODE);
+        String returnMsg = (String) data.get(WepayField.RETURN_MSG);
+        String resultCode = (String) data.get(WepayField.RESULT_CODE);
+
+        String errCode = null;
+        String errCodeDes = null;
+        if (resultCode.equals("FAIL")) {
+            errCode = (String) data.get(WepayField.ERR_CODE);
+            errCodeDes = (String) data.get(WepayField.ERR_CODE_DES);
+        }
+
+        String signing =
+                WepayField.APPID + "=" + appId +
+                        "&" + WepayField.NONCESTR2 + "=" + nonceStr +
+                        "&" + WepayField.MWEB_URL + "=" + mwebUrl +
+                        "&" + WepayField.PKG + "=" + pkg +
+                        "&" + WepayField.SIGN_TYPE + "=MD5" +
+                        "&" + WepayField.TIME_STAMP + "=" + timeStamp +
+                        "&" + WepayField.KEY + "=" + wepay.getAppKey();
+
+        String signed = MD5.generate(signing, false).toUpperCase();
+
+        return new H5PayResponse(appId, timeStamp, nonceStr, pkg, "MD5", signed,
+                returnCode, resultCode, errCode, errCodeDes, returnMsg, prepayId, mwebUrl);
+    }
+
     /**
      * 检查支付参数合法性
      * @param request 支付请求对象
@@ -188,6 +259,17 @@ public final class Pays extends Component {
     private void checkJsPayParams(JsPayRequest request) {
         checkPayParams(request);
         checkNotNullAndEmpty(request.getOpenId(), "openId");
+    }
+
+    /**
+     * 检查支付参数合法性
+     *
+     * @param request 支付请求对象
+     */
+    private void checkH5PayParams(H5PayRequest request) {
+        checkPayParams(request);
+        checkNotNullAndEmpty(request.getWapUrl(), "wapUrl");
+        checkNotNullAndEmpty(request.getWapName(), "wapName");
     }
 
     private void checkPayParams(PayRequest request) {
