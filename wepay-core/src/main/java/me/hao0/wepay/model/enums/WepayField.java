@@ -458,4 +458,50 @@ public final class WepayField {
 
     public static final String MWEB_URL = "mweb_url";
 
+
+    /**
+     * 以下字段为企业专用字段
+     */
+
+    // 商户企业订单号
+    public static final String PARTNER_TRADE_NO = "partner_trade_no";
+
+    // 收款方银行卡号
+    public static final String ENC_BANK_NO = "enc_bank_no";
+
+    // 收款方用户名
+    public static final String ENC_TRUE_NAME = "enc_true_name";
+
+    // 收款方开户行
+    public static final String BANK_CODE = "bank_code";
+
+    // 付款说明
+    public static final String DESC = "desc";
+
+    // 微信企业付款单号
+    public static final String PAYMENT_NO = "payment_no";
+
+    // 手续费金额
+    public static final String CMMS_AMT = "cmms_amt";
+
+    // 付款金额
+    public static final String AMOUNT = "amount";
+
+    // rsa公钥
+    public static final String PUB_KEY = "pub_key";
+
+
+    public static final String BANK_NO_MD5 = "bank_no_md5";
+
+
+    public static final String TRUE_NAME_MD5 = "true_name_md5";
+
+    public static final String PAY_SUCC_TIME = "pay_succ_time";
+
+    public static final String STATUS = "status";
+
+    public static final String CREATE_TIME = "create_time";
+
+    public static final String REASON = "reason";
+
 }
