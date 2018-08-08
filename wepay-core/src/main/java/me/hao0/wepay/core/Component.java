@@ -90,6 +90,14 @@ public abstract class Component {
     }
 
     /**
+     * 构建企业配置参数
+     * @param params 参数
+     */
+    protected void buildPartnerConfigParams(final Map<String, String> params) {
+        params.put(WepayField.MCH_ID, wepay.getMchId());
+    }
+
+    /**
      * 构建签名参数
      * @param params 支付参数
      */

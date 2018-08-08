@@ -76,6 +76,8 @@ public final class Wepay {
      */
     private Bills bills;
 
+    private Partners partners;
+
     Wepay(String appId, String appKey, String mchId){
         this.appId = appId;
         this.appKey = appKey;
@@ -120,6 +122,7 @@ public final class Wepay {
         refunds = new Refunds(this);
         notifies = new Notifies(this);
         bills = new Bills(this);
+        partners = new Partners(this);
         if (certs != null && !Strings.isNullOrEmpty(certPasswd)){
             sslSocketFactory = initSSLSocketFactory();
         }
@@ -184,5 +187,13 @@ public final class Wepay {
      */
     public Bills bill(){
         return bills;
+    }
+
+    /**
+     * 调用企业组件
+     * @return 企业组件
+     */
+    public Partners partners() {
+        return partners;
     }
 }
